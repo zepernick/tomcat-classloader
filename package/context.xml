@@ -39,9 +39,9 @@ without the need to re-deploy a modified war file.
 Installation
 -->
 
-  <Loader
-    searchVirtualFirst="true" 
-    className="rds.DynamicVirtualWebappLoader"
-    virtualClasspath="/path/to/stored/server/configs"
-  />
+  <Resources>
+    <PostResources className="rds.DynamicVirtualWebappLoader"
+                   webAppMount="/WEB-INF/classes" base="C:/apache/virtual_classpath" />
+  </Resources>
+
 </Context>

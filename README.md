@@ -1,6 +1,8 @@
 <pre>
 <b>Overview</b>
 
+**This project has been Forked and modified for Tomcat 9.
+
 The project once installed onto the tomcat server allows the tomcat
 administrator to specify a centeral location for all web-applications
 properties files. Web-applications that load their properties using the
@@ -37,20 +39,17 @@ before using the default classpath.
 
 <b>Installation</b>
 
-Download the follow <a href="browse/package/DynamicVirtualWebappLoader.jar?raw
-">DynamicVirtualWebappLoader.jar</a> file and place it into your
+Download the DynamicVirtualWebappLoader.jar file and place it into your
 <b>$CATALINA_BASE/lib</b> directory.
 
 Apply the following modification to <b>$CATALINA_BASE/conf/context.xml</b>.
 Change the <b>virtualClasspath</b> to the required path on the server.
 
 &lt;Context>
-    &lt;!-- Add this to the context -->
-    &lt;Loader
-      searchVirtualFirst="true" 
-      className="rds.DynamicVirtualWebappLoader"
-      virtualClasspath="/path/to/base/config/path"
-    />
+  &lt;Resources>
+    &lt;PostResources className="rds.DynamicVirtualWebappLoader"
+                   webAppMount="/WEB-INF/classes" base="/apache/virtual_classpath" />
+  &lt;/Resources>
 &lt;/Context>
 
 <b>Restart tomcat instance</b>
